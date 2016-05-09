@@ -1,6 +1,6 @@
 var React = require('react');
+var GetRepos = require('../components/GetRepos');
 var AppsHelper = require('../utils/ww-apps-helper');
-// var getRepos = require('../components/getRepos');
 
 var GetReposConatiner = React.createClass({
   contextTypes: {
@@ -12,8 +12,8 @@ var GetReposConatiner = React.createClass({
     }
   },
   componentDidMount: function () {
-    var query = this.props.location.query;
-    AppsHelper.getReposInfo()
+    // var query = this.props.location.query;
+    AppsHelper.Repos()
     .then(function (repos) {
       this.setState({
         reposInfo: [repos]
@@ -30,7 +30,7 @@ var GetReposConatiner = React.createClass({
   },
   render: function() {
     return (
-      <getRepos
+      <GetRepos
         onShowReposIndex={this.handleShowReposIndex}
         reposInfo={this.state.reposInfo} />
     )

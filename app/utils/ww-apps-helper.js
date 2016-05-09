@@ -1,32 +1,22 @@
 var axios = require('axios');
+var React = require('react');
 
-// function getRepoInfo () {
-//   return axios.get('http://localhost:3000/repos')
-// }
+function getRepoInfo () {
+  return axios.get('http://localhost:3000/api/v1/repos')
+}
 
-// var Repos = {
-//   getReposInfo: function (repositories) {
-//     return axios.all(repositories.map(function (repo) {
-//       return getReposInfo(repo)
-//     })).then(function(info){
-//       return info.map(function(repository){
-//         console.log(repository)
-//         return repository.data
-//       })
-//     }).catch(function(err){
-//       console.warn("you made a mistake so fix it", err)
-//     })
-//   }
-// };
-
-var Repos = (axios.get('http://localhost:3000/repos')
-  .then(function (response) {
-    console.log(response);
-    // return response.map(function(repo){
-    //   return repo
+var repos = {
+  Repos: function Repos () {
+    return getRepoInfo()
+    .then(function (response) {
+      // return response.data.map(function(repo){
+        return response.data
     // })
-  }).catch(function(err) {
-    console.warn("you made a mistake so fix it", err)
-  })
-);
-module.exports = Repos;
+      // console.log(response.data)
+    }).catch(function(err){
+      console.warn("COME FIX", err)
+    })
+  }
+}
+
+module.exports = repos;
