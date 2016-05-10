@@ -23,6 +23,21 @@ var HomeContainer = React.createClass({
       environmentsInfo: []
     }
   },
+
+  componentDidMount: function() {
+    var query = this.props.location.query;
+    AppsHelper.ReposAndEnvironments([query.repos, query.envs])
+      .then(function(devInfo){
+        this.setState({
+          reposInfo: [devInfo],
+          environmentsInfo: [devInfo],
+        }, function() {
+          // console.log(this.state)
+        } )
+        // console.log(this.state)
+      }.bind(this))
+    },
+
   // componentDidMount: function() {
   //   debugger;
   //   AppsHelper.Repos()
@@ -31,7 +46,7 @@ var HomeContainer = React.createClass({
   //         reposInfo: [repos]
   //       })
   //     }.bind(this))
-  //   },
+  //   }
   //   AppsHelper.Environments()
   //     .then(function(environments){
   //       this.setState({
@@ -40,23 +55,34 @@ var HomeContainer = React.createClass({
   //     }.bind(this))
   //   }
   // },
-  componentDidMount: function () {
-    return (
-      <div>
-      <ReposContainer
-        reposInfo={this.state.reposInfo}
-      />
-      debugger;
-      <EnvironmentsContainer
-        environmentsInfo={this.state.environmentsInfo}/>
-      </div>
-    )
+  handleHome: function () {
+    this.context.router.push({
+      pathname: '/',
+      state: {
+        reposInfo: this.state.reposInfo[0][0].data,
+        environmentsInfo: this.state.environmentsInfo[0][1].data
+      }
+    })
   },
+
+
+  // componentDidMount: function () {
+  //   return (
+  //     <div>
+  //     <ReposContainer
+  //       reposInfo={this.state.reposInfo}
+  //     />
+  //     debugger;
+  //     <EnvironmentsContainer
+  //       environmentsInfo={this.state.environmentsInfo}/>
+  //     </div>
+  //   )
+  // },
 
 
   render: function() {
     return (
-      <div> <ReposContainer/> < EnvironmentsContainer /> </div>
+      <div> <Home reposInfo={this.state.reposInfo}/> </div>
     )
   }
 });

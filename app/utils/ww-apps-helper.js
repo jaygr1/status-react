@@ -30,4 +30,18 @@ Environments: function Environments() {
   })
 }
 
-module.exports = {Repos: Repos, Environments: Environments};
+ReposAndEnvironments: function ReposAndEnvironments() {
+  var envs = getRepoInfo();
+  var repos = GetEnvironmentsInfo();
+
+  return axios.all([envs, repos])
+    .then(function(response) {
+      return response
+      // console.log(response)
+    })
+    .catch(function(err) {
+      console.warn("Didn't get the data back", err)
+    })
+};
+
+module.exports = {Repos: Repos, Environments: Environments, ReposAndEnvironments: ReposAndEnvironments};

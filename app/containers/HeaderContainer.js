@@ -1,5 +1,5 @@
 var React = require('react');
-var HomeContainer = require('./HomeContainer');
+// var HomeContainer = require('./HomeContainer');
 var Header = require('../components/Header');
 
 
