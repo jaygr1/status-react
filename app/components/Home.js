@@ -44,13 +44,13 @@ var Home = React.createClass({
       <ul>
 
       {repos.map(function(repo){
-        {console.log(repo)}
-        repo.data.map(function(data){
-          // {console.log(data)}
+        // {console.log(repo)}
+      //   repo.data.map(function(data){
+      //     {console.log(data)}
           //
-          // <li key={repo.id}><a href={repo.url}> {data.name} </a></li>
+          return <li key={repo.id}><a href={repo.url}> {repo.name} </a></li>
         })
-        })
+        // })
       }
       </ul>
     )

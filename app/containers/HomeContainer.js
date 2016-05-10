@@ -28,9 +28,10 @@ var HomeContainer = React.createClass({
     var query = this.props.location.query;
     AppsHelper.ReposAndEnvironments([query.repos, query.envs])
       .then(function(devInfo){
+        debugger
         this.setState({
-          reposInfo: [devInfo],
-          environmentsInfo: [devInfo],
+          reposInfo: [devInfo[0].data],
+          environmentsInfo: [devInfo[1].data],
         }, function() {
           // console.log(this.state)
         } )
@@ -82,7 +83,7 @@ var HomeContainer = React.createClass({
 
   render: function() {
     return (
-      <div> <Home reposInfo={this.state.reposInfo}/> </div>
+      <div> <Home reposInfo={this.state.reposInfo} environmentsInfo={this.state.environmentsInfo}/> </div>
     )
   }
 });
