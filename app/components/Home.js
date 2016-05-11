@@ -1,5 +1,6 @@
 var React = require('react');
-var TimeAgo = require('react-timeago');
+var moment = require('moment');
+
 
 var Home = React.createClass({
 
@@ -10,7 +11,7 @@ var Home = React.createClass({
     var repoEnvs = environments.filter(function(environment){
       return environment.repo_id === repoId;
     }).map(function (repoEnv) {
-      return <div><a key={repoEnv.id} href={repoEnv.url}> <span className="col-sm-4">{repoEnv.name}</span></a> <span className="col-sm-4 ">{repoEnv.status}</span> <span className="col-sm-4 ">{repoEnv.updated_at}</span></div>
+      return <div><a key={repoEnv.id} href={repoEnv.url}> <span className="col-sm-4">{repoEnv.name}</span></a> <span className="col-sm-4 ">{repoEnv.status}</span> <span className="col-sm-4 ">{moment(repoEnv.updated_at).fromNow()}</span></div>
     })
 
     return repoEnvs;
