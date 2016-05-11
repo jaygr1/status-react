@@ -1,4 +1,5 @@
 var React = require('react');
+var moment = require('moment');
 
 var styles = {
   li: {
@@ -17,7 +18,7 @@ var Environments = React.createClass({
         <tbody className='table table-hover'>
         <div><strong><span className="col-sm-4"> Name </span> <span className="col-sm-4"> Status </span> <span className="col-sm-4"> Last Updated </span></strong> </div>
         {environments.map(function(environment){
-          return <div><a key={environment.id} href={environment.url}> <span className="col-sm-4">{environment.name}</span></a> <span className="col-sm-4 ">{environment.status}</span> <span className="col-sm-4 ">{environment.updated_at}</span></div>
+          return <div><a key={environment.id} href={environment.url}> <span className="col-sm-4">{environment.name}</span></a> <span className="col-sm-4 ">{environment.status}</span> <span className="col-sm-4 ">{moment(environment.updated_at).fromNow()}</span></div>
           })
         }
           </tbody>
